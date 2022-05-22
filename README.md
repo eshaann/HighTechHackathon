@@ -6,3 +6,5 @@ We're aiming to make the process of finding rallies and protests about social ju
 We hope that this project makes it more convenient for people who are interested in participating in social justice events so becoming a more responsible citizen of the world is easier.
 
 This project was created for High Tech Hacks 2022!
+Project Presentation:
+https://youtu.be/tQD_CA8_2LM
