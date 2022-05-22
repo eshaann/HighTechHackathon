@@ -25,20 +25,13 @@ finalQuery = "(" + hashtagQuery + ")" + " (" + keywordQuery + ")"
 
 query_params = {'query': finalQuery}
 
-print(hashtagQuery)
-
 def bearer_oauth(r):
-    """
-    Method required by bearer token authentication.
-    """
-
     r.headers["Authorization"] = f"Bearer {bearer_token}"
     r.headers["User-Agent"] = "v2RecentSearchPython"
     return r
 
 def connect_to_endpoint(url, params):
     response = requests.get(url, auth=bearer_oauth, params=params)
-    print(response.status_code)
     if response.status_code != 200:
         raise Exception(response.status_code, response.text)
     return response.json()
@@ -46,7 +39,6 @@ def connect_to_endpoint(url, params):
 
 def main():
     json_response = connect_to_endpoint(search_url, query_params)
-    print(json.dumps(json_response, indent=4, sort_keys=True))
 
 
 if __name__ == "__main__":
