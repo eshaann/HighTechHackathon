@@ -53,4 +53,10 @@ function loadIds (ids) {
   // <script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 }
 
-httpGetAsync("http://127.0.0.1:5000/withhashtag/blm/protest", loadIds)
+queryString = window.location.search;
+urlParams = new URLSearchParams(queryString);
+
+topics = urlParams.get("Hashtag_Choice")
+console.log(topics)
+
+httpGetAsync("http://127.0.0.1:5000/withhashtag/" + topics.substring(1, topics.length) + "/protest-rallies-rally-strike-protests-socialjustice-equality-people-today", loadIds)

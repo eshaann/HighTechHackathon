@@ -49,15 +49,6 @@ def getPostsWithHastag(hashtag, event):
 
     return test[0:(len(test)-1)]
 
-
-@app.route('/tweethtml/<usr>/<id>')
-def getTweetHTML(usr, id):
-    link = "https://twitter.com/" + usr + "/status/" + id
-    params = {'url': link}
-    json = connect_to_endpoint(embed_url, params)
-    obj = json.loads(json)
-    return obj["html"]
-
 def connect_to_endpoint(url, params):
     response = requests.get(url, auth=bearer_oauth, params=params)
     if response.status_code != 200:
