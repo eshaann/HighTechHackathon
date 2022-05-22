@@ -2,13 +2,17 @@ import urllib.parse
 import json
 import requests
 from flask import Flask
+
+bearer_token = "AAAAAAAAAAAAAAAAAAAAAPFecwEAAAAAvjnPLEh2Fbw1XmDaJWY2xb6Hrt0%3D6c79gIlmb1Pz61b0f01jc0vTDLejrfkvUvAUm94pA5rACKXXxr"
+search_url = "https://api.twitter.com/2/tweets/search/recent"
 app = Flask(__name__)
 
 @app.route('/withhashtag/<hashtag>/<event>')
 def getPostsWithHastag(hashtag, event):
     # if the hashtag parameter has multiple hashtags, they should be seperated by "-", i.e "BLM-LGBTQ-prochoice"
     # same thing with events
-
+    print("HASHTAGS: " + hashtag)
+    print("SECOND: " + event)
 
     keywordQuery = ""
     if (event != ""):
@@ -20,11 +24,11 @@ def getPostsWithHastag(hashtag, event):
     hashtagQuery = ""
     if (hashtag != ""):
         while (hashtag.find("-") >= 0):
-            keywordQuery += "#" + hashtag[0:(hashtag.find("-"))] + " OR "
+            hashtagQuery += "#" + hashtag[0:(hashtag.find("-"))] + " OR "
             hashtag = hashtag[(hashtag.find("-")+1):(len(hashtag))]
         hashtagQuery += "#" + hashtag
 
-    finalQuery = "(" + hashtagQuery + ") (" + keywordQuery + ")  place_country:US -is:retweet -is:reply has:links lang:en"
+    finalQuery = "(" + hashtagQuery + ") (" + keywordQuery + ") -is:retweet -is:reply has:links lang:en"
 
     query_params = {'query': finalQuery}
     return connect_to_endpoint(search_url, query_params)
