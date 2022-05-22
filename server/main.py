@@ -2,17 +2,23 @@ import urllib.parse
 import json
 import requests
 from flask import Flask
+from flask_cors import CORS
+
 
 bearer_token = "AAAAAAAAAAAAAAAAAAAAAPFecwEAAAAAvjnPLEh2Fbw1XmDaJWY2xb6Hrt0%3D6c79gIlmb1Pz61b0f01jc0vTDLejrfkvUvAUm94pA5rACKXXxr"
 search_url = "https://api.twitter.com/2/tweets/search/recent"
+embed_url = "https://publish.twitter.com/oembed"
+
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/withhashtag/<hashtag>/<event>')
 def getPostsWithHastag(hashtag, event):
     # if the hashtag parameter has multiple hashtags, they should be seperated by "-", i.e "BLM-LGBTQ-prochoice"
     # same thing with events
-    print("HASHTAGS: " + hashtag)
-    print("SECOND: " + event)
+
+    # for testing purposes
+    # event = "protest-rally-march"
 
     keywordQuery = ""
     if (event != ""):
@@ -31,8 +37,26 @@ def getPostsWithHastag(hashtag, event):
     finalQuery = "(" + hashtagQuery + ") (" + keywordQuery + " -history) -is:retweet -is:reply lang:en has:media"
 
     query_params = {'query': finalQuery}
-    return connect_to_endpoint(search_url, query_params)
+    obj = connect_to_endpoint(search_url, query_params)
+    # return obj
+    listOfIds = []
 
+    responseList = obj["data"]
+
+    test = ""
+    for i in responseList:
+        test += i["id"] + "-"
+
+    return test[0:(len(test)-1)]
+
+
+@app.route('/tweethtml/<usr>/<id>')
+def getTweetHTML(usr, id):
+    link = "https://twitter.com/" + usr + "/status/" + id
+    params = {'url': link}
+    json = connect_to_endpoint(embed_url, params)
+    obj = json.loads(json)
+    return obj["html"]
 
 def connect_to_endpoint(url, params):
     response = requests.get(url, auth=bearer_oauth, params=params)
