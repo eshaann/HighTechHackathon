@@ -1,0 +1,73 @@
+.navbar navbar-expand-sm bg-success navbar-dark{
+    color: black;
+}
+.navbar-nav > li{
+    padding-left:20px;
+    padding-right:20px;
+    font-size: 1.4rem;
+}
+#mybtn{
+    justify-content: center;
+    font-size:1.3rem;
+    margin-right:35px;
+}
+
+.container-fluid{
+    margin-left:10px;
+    margin-right:10px;
+}
+
+.navbar-brand{
+    padding-left:35px;
+}
+
+  
+.aboutus{
+    width: 100%;
+    background-color: rgb(26, 25, 25);
+    padding-top: 50px;
+    color:rgb(0, 91, 203);
+}
+
+.aboutus img{
+    width:450px;
+    height:auto;
+    padding-left: 50px;
+}
+
+.person h1{
+    font-size: 70px;
+    text-transform: capitalize;
+    margin-bottom: 20px;
+}
+
+.person h4{
+    font-size: 20px;
+    text-transform: capitalize;
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+}
+
+.description{
+    width:700px;
+    padding-left: 60px;
+}
+
+.person{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:1200px;
+    max-width: 95%;
+    margin-right:auto;
+    padding-bottom: 20px;
+}
+
+.fullscreen-video {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+  }
+  
