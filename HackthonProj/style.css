@@ -1,0 +1,24 @@
+.navbar navbar-expand-sm bg-success navbar-dark{
+    color: black;
+}
+.navbar-nav > li{
+    padding-left:20px;
+    padding-right:20px;
+    font-size: 1.4rem;
+}
+#mybtn{
+    justify-content: center;
+    font-size:1.3rem;
+    margin-right:35px;
+}
+
+.container-fluid{
+    margin-left:10px;
+    margin-right:10px;
+}
+
+.navbar-brand{
+    padding-left:35px;
+}
+
+
