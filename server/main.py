@@ -28,7 +28,7 @@ def getPostsWithHastag(hashtag, event):
             hashtag = hashtag[(hashtag.find("-")+1):(len(hashtag))]
         hashtagQuery += "#" + hashtag
 
-    finalQuery = "(" + hashtagQuery + ") (" + keywordQuery + ") -is:retweet -is:reply has:links lang:en"
+    finalQuery = "(" + hashtagQuery + ") (" + keywordQuery + " -history) -is:retweet -is:reply lang:en has:media"
 
     query_params = {'query': finalQuery}
     return connect_to_endpoint(search_url, query_params)
